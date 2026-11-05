@@ -1,0 +1,38 @@
+{
+    "name": "nickdekruijk/laravel-bot-noise",
+    "description": "Keeps bot traffic out of your Laravel error tracking: filters Livewire probe exceptions, refuses arrays sent to non-array properties and cleans invalid UTF-8 from the query string",
+    "license": "MIT",
+    "keywords": ["laravel", "livewire", "sentry", "bots", "exceptions", "error tracking"],
+    "authors": [{
+        "name": "Nick de Kruijk",
+        "email": "git@nickdekruijk.nl"
+    }],
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^10.0|^11.0|^12.0|^13.0"
+    },
+    "require-dev": {
+        "livewire/livewire": "^3.7|^4.1",
+        "orchestra/testbench": "^10.0|^11.0",
+        "phpunit/phpunit": "^11.0|^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "NickDeKruijk\\BotNoise\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NickDeKruijk\\BotNoise\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NickDeKruijk\\BotNoise\\ServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
