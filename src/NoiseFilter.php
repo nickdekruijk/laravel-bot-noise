@@ -31,6 +31,14 @@ final class NoiseFilter
      */
     private const PROBE_METHOD = '[_xNonExist]';
 
+    private const PROPERTY_NOT_FOUND = 'Livewire\Exceptions\PublicPropertyNotFoundException';
+
+    /**
+     * A property name scanners send to every component, looking for a file
+     * manager. Any other missing property can be a real typo and stays reported.
+     */
+    private const PROBE_PROPERTY = '[$newFolderName]';
+
     private const HANDLE_COMPONENTS = 'livewire/livewire/src/Mechanisms/HandleComponents/HandleComponents.php';
 
     public static function isNoise(Throwable $exception): bool
@@ -50,6 +58,7 @@ final class NoiseFilter
     public static function isNoiseByContent(Throwable $exception): bool
     {
         return self::isProbeCall($exception)
+            || self::isProbeProperty($exception)
             || self::isBrokenPayload($exception)
             || self::isNestedInput($exception)
             || self::isArrayAssignedToTypedProperty($exception);
@@ -61,6 +70,14 @@ final class NoiseFilter
 
         return $exception instanceof $class
             && str_contains($exception->getMessage(), self::PROBE_METHOD);
+    }
+
+    private static function isProbeProperty(Throwable $exception): bool
+    {
+        $class = self::PROPERTY_NOT_FOUND;
+
+        return $exception instanceof $class
+            && str_contains($exception->getMessage(), self::PROBE_PROPERTY);
     }
 
     /**

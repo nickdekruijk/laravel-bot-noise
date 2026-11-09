@@ -4,6 +4,7 @@ namespace NickDeKruijk\BotNoise\Tests;
 
 use ErrorException;
 use Livewire\Exceptions\MethodNotFoundException;
+use Livewire\Exceptions\PublicPropertyNotFoundException;
 use Livewire\Features\SupportFileUploads\MissingFileUploadsTraitException;
 use Livewire\Features\SupportLockedProperties\CannotUpdateLockedPropertyException;
 use Livewire\Livewire;
@@ -44,6 +45,16 @@ class NoiseFilterTest extends TestCase
     public function test_a_real_missing_method_is_reported(): void
     {
         $this->assertReported(new MethodNotFoundException('openTask'));
+    }
+
+    public function test_the_probe_property_is_not_reported(): void
+    {
+        $this->assertNotReported(new PublicPropertyNotFoundException('newFolderName', 'contact-form'));
+    }
+
+    public function test_a_real_missing_property_is_reported(): void
+    {
+        $this->assertReported(new PublicPropertyNotFoundException('newFolder', 'contact-form'));
     }
 
     public function test_a_broken_payload_in_handle_components_is_not_reported(): void

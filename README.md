@@ -22,6 +22,7 @@ Only in the environments from the config, by default `production`. A real bug st
 | `CannotUpdateLockedPropertyException` | an attempt to overwrite a locked property |
 | `MissingFileUploadsTraitException` | an upload call to a component without uploads |
 | `MethodNotFoundException` for `_xNonExist` | a method name scanners try. Other missing methods stay reported on Livewire versions that report them |
+| `PublicPropertyNotFoundException` for `$newFolderName` | a property name scanners send to every component. Other missing properties stay reported |
 | `ErrorException` "array offset on null" from Livewire's `HandleComponents` | a payload without a snapshot |
 | `ErrorException` "Input variable nesting level exceeded" | a query string nested too deep |
 | `TypeError` "Cannot assign array to property" raised inside Livewire | an array sent to a typed property |
